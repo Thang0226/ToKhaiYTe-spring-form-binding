@@ -19,6 +19,15 @@ public class FormController {
 
 	@GetMapping("/create")
 	public String showForm(Model model) {
+		model.addAttribute("years", formService.getYears());
+		model.addAttribute("months", formService.getMonths());
+		model.addAttribute("dates", formService.getDates());
+		model.addAttribute("sexes", formService.getSexes());
+		model.addAttribute("nationalities", formService.getNationalities());
+		model.addAttribute("transports", formService.getTransports());
+		model.addAttribute("cities", formService.getCities());
+		model.addAttribute("towns", formService.getTowns());
+		model.addAttribute("streets", formService.getStreets());
 		ToKhaiYTe Form = new ToKhaiYTe();
 		model.addAttribute("form", Form);
 		return "create";
