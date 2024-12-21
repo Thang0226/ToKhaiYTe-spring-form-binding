@@ -46,4 +46,19 @@ public class FormController {
 		model.addAttribute("form", formService.getForm());
 		return "show";
 	}
+
+	@GetMapping("/update")
+	public String showUpdateForm(Model model) {
+		model.addAttribute("years", formService.getYears());
+		model.addAttribute("months", formService.getMonths());
+		model.addAttribute("dates", formService.getDates());
+		model.addAttribute("sexes", formService.getSexes());
+		model.addAttribute("nationalities", formService.getNationalities());
+		model.addAttribute("transports", formService.getTransports());
+		model.addAttribute("cities", formService.getCities());
+		model.addAttribute("towns", formService.getTowns());
+		model.addAttribute("streets", formService.getStreets());
+		model.addAttribute("form", formService.getForm());
+		return "create";
+	}
 }

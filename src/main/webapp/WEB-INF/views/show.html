@@ -11,8 +11,8 @@
 </div>
 
 <div id="form" style="margin: 0 auto;">
-    <form th:action="@{/form/save}" th:object="${form}"
-          method="POST" enctype="multipart/form-data">
+    <form th:action="@{/form/update}" th:object="${form}"
+          method="GET" enctype="multipart/form-data">
         <label for="name">Họ tên (Ghi chữ IN HOA) <span class="red">(*)</span></label><br>
         <input type="text" id="name" th:value="*{name}" readonly/><br>
         <table>
@@ -131,39 +131,39 @@
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Sốt <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input th:if="${form.symptom1 == true}" type="radio" name="symptom1"
-                               style="width: 20px; height: 20px;" checked disabled>
+                        <input type="radio" name="symptom1"
+                               style="width: 20px; height: 20px;" th:checked="${form.symptom1}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input th:unless="${form.symptom1 == true}" type="radio" name="symptom1"
-                               style="width: 20px; height: 20px;" disabled>
+                        <input type="radio" name="symptom1"
+                               style="width: 20px; height: 20px;" th:checked="${!form.symptom1}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Ho <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;" th:checked="${form.symptom2}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;" th:checked="${!form.symptom2}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Khó thở <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;" th:checked="${form.symptom3}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;" th:checked="${!form.symptom3}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Đau họng <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;" th:checked="${form.symptom4}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;" th:checked="${!form.symptom4}" th:disabled="true">
                     </td>
                 </tr>
                 </tbody>
@@ -182,39 +182,39 @@
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Nôn/buồn nôn <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;" th:checked="${form.symptom5}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;" th:checked="${!form.symptom5}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Tiêu chảy <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;" th:checked="${form.symptom6}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;" th:checked="${!form.symptom6}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Xuất huyết ngoài da <span class="red">(*)</span>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;" th:checked="${form.symptom7}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;" th:checked="${!form.symptom7}" th:disabled="true">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Nổi ban ngoài da <span class="red">(*)</span>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;" th:checked="${form.symptom8}" th:disabled="true">
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;" th:checked="${!form.symptom8}" th:disabled="true">
                     </td>
                 </tr>
                 </tbody>
@@ -239,10 +239,10 @@
                     <span class="red">(*)</span>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history1" style="width: 20px; height: 20px;" required>
+                    <input type="radio" name="history1" style="width: 20px; height: 20px;" th:checked="${form.history1}" th:disabled="true">
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history1" style="width: 20px; height: 20px;">
+                    <input type="radio" name="history1" style="width: 20px; height: 20px;" th:checked="${!form.history1}" th:disabled="true">
                 </td>
             </tr>
             <tr>
@@ -251,17 +251,17 @@
                     <span class="red">(*)</span>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history2" style="width: 20px; height: 20px;" required>
+                    <input type="radio" name="history2" style="width: 20px; height: 20px;" th:checked="${form.history2}" th:disabled="true">
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history2" style="width: 20px; height: 20px;">
+                    <input type="radio" name="history2" style="width: 20px; height: 20px;" th:checked="${!form.history2}" th:disabled="true">
                 </td>
             </tr>
             </tbody>
         </table>
 
         <br>
-        <input type="submit" value="GỬI TỜ KHAI">
+        <input type="submit" value="SỬA TỜ KHAI">
     </form>
 </div>
 
