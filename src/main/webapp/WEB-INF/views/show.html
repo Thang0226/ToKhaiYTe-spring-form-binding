@@ -6,10 +6,15 @@
 <body>
 <h2>TỜ KHAI Y TẾ</h2>
 
+<div th:if="${message}" class="notify">
+    <span th:text="${message}"></span>
+</div>
+
 <div id="form" style="margin: 0 auto;">
-    <form th:action="@{/form/save}" th:object="${form}" method="POST">
+    <form th:action="@{/form/save}" th:object="${form}"
+          method="POST" enctype="multipart/form-data">
         <label for="name">Họ tên (Ghi chữ IN HOA) <span class="red">(*)</span></label><br>
-        <input type="text" id="name" th:field="*{name}" required/><br>
+        <input type="text" id="name" th:value="*{name}" readonly/><br>
         <table>
             <tr>
                 <td>Năm sinh <span class="red">(*)</span></td>
@@ -18,115 +23,60 @@
             </tr>
             <tr>
                 <td>
-                    <select th:field="*{birthYear}" required>
-                        <option th:each="year : ${years}"
-                                th:value="${year}"
-                                th:text="${year}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{birthYear}">
+                    </span>
                 </td>
                 <td>
-                    <select th:field="*{sex}" required>
-                        <option th:each="sex : ${sexes}"
-                                th:value="${sex}"
-                                th:text="${sex}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{sex}">
+                    </span>
                 </td>
                 <td>
-                    <select th:field="*{nationality}" required>
-                        <option th:each="nationality : ${nationalities}"
-                                th:value="${nationality}"
-                                th:text="${nationality}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{nationality}">
+                    </span>
                 </td>
             </tr>
         </table>
 
         <label for="cccd">Số CCCD/CMND hoặc giấy thông hành hợp pháp khác <span class="red">(*)</span></label><br>
-        <input type="text" id="cccd" th:field="*{cccd}" required/><br>
+        <input type="text" id="cccd" th:field="*{cccd}" disabled/><br>
 
         <label for="transport">Thông tin đi lại <span class="red">(*)</span></label>
-        <ul id="transport" style="list-style: none;">
-            <li th:each="transport : ${transports}">
-                <input type="radio" th:name="transport" th:value="${transport}"  required>
-                <span th:text="${transport}"></span>
-            </li>
-        </ul>
+        <br>
+        <input type="text" id="transport" th:field="*{transport}" disabled/><br>
 
         <table>
             <tr>
-                <td>Số hiệu phương tiện </td>
-                <td>Số ghế </td>
+                <td>Số hiệu phương tiện</td>
+                <td>Số ghế</td>
             </tr>
             <tr>
-                <td><input type="text" placeholder="VD:VN123" th:field="*{transportId}"></td>
-                <td><input type="text" th:field="*{chairNumber}"></td>
+                <td><input type="text" placeholder="VD:VN123" th:field="*{transportId}" disabled></td>
+                <td><input type="text" th:field="*{chairNumber}" disabled></td>
             </tr>
         </table>
 
         <table>
             <tr>
                 <td>Ngày khởi hành <span class="red">(*)</span></td>
-                <td>Ngày kết thúc <span class="red">(*)</span> </td>
+                <td>Ngày kết thúc <span class="red">(*)</span></td>
             </tr>
             <tr>
                 <td>
-                    <select th:field="*{startDate}" required>
-                        <option th:each="date : ${dates}"
-                                th:value="${date}"
-                                th:text="${date}"
-                        >
-                        </option>
-                    </select>
-                    <select th:field="*{startMonth}" required>
-                        <option th:each="month : ${months}"
-                                th:value="${month}"
-                                th:text="${month}"
-                        >
-                        </option>
-                    </select>
-                    <select th:field="*{startYear}" required>
-                        <option th:each="year : ${years}"
-                                th:value="${year}"
-                                th:text="${year}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{startDate}"></span>/
+                    <span th:text="*{startMonth}"></span>/
+                    <span th:text="*{startYear}"></span>
                 </td>
                 <td>
-                    <select th:field="*{endDate}" required>
-                        <option th:each="date : ${dates}"
-                                th:value="${date}"
-                                th:text="${date}"
-                        >
-                        </option>
-                    </select>
-                    <select th:field="*{endMonth}" required>
-                        <option th:each="month : ${months}"
-                                th:value="${month}"
-                                th:text="${month}"
-                        >
-                        </option>
-                    </select>
-                    <select th:field="*{endYear}" required>
-                        <option th:each="year : ${years}"
-                                th:value="${year}"
-                                th:text="${year}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{endDate}"></span>/
+                    <span th:text="*{endMonth}"></span>/
+                    <span th:text="*{endYear}"></span>
                 </td>
             </tr>
         </table>
 
         <label for="places">Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?
             <span class="red">(*)</span></label><br>
-        <input type="text" id="places" th:field="*{visitedPlaces}" required/><br>
+        <input type="text" id="places" th:field="*{visitedPlaces}" disabled/><br>
 
         <br>
         <strong>Địa chỉ liên lạc</strong><br>
@@ -139,46 +89,28 @@
             </tr>
             <tr>
                 <td>
-                    <select th:field="*{city}" required>
-                        <option th:each="city : ${cities}"
-                                th:value="${city}"
-                                th:text="${city}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{city}"></span>
                 </td>
                 <td>
-                    <select th:field="*{town}" required>
-                        <option th:each="town : ${towns}"
-                                th:value="${town}"
-                                th:text="${town}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{town}"></span>
                 </td>
                 <td>
-                    <select th:field="*{street}" required>
-                        <option th:each="street : ${streets}"
-                                th:value="${street}"
-                                th:text="${street}"
-                        >
-                        </option>
-                    </select>
+                    <span th:text="*{street}"></span>
                 </td>
             </tr>
         </table>
 
         <label for="address">Địa chỉ nơi ở <span class="red">(*)</span></label><br>
-        <input type="text" id="address" th:field="*{address}" required/><br>
+        <input type="text" id="address" th:field="*{address}" disabled/><br>
 
         <table>
             <tr>
-                <td>Điện thoại <span class="red">(*)</span> </td>
-                <td>Email </td>
+                <td>Điện thoại <span class="red">(*)</span></td>
+                <td>Email</td>
             </tr>
             <tr>
-                <td><input type="text" th:field="*{phone}" required></td>
-                <td><input type="text" th:field="*{email}"></td>
+                <td><input type="text" th:field="*{phone}" disabled></td>
+                <td><input type="text" th:field="*{email}" disabled></td>
             </tr>
         </table>
 
@@ -199,37 +131,39 @@
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Sốt <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom1" style="width: 20px; height: 20px;" value="true" required>
+                        <input th:if="${form.symptom1 == true}" type="radio" name="symptom1"
+                               style="width: 20px; height: 20px;" checked disabled>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom1" value="false" style="width: 20px; height: 20px;">
+                        <input th:unless="${form.symptom1 == true}" type="radio" name="symptom1"
+                               style="width: 20px; height: 20px;" disabled>
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Ho <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom2" value="true" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;" required>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom2" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom2" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Khó thở <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom3" value="true" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;" required>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom3" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom3" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Đau họng <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom4" value="true" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;" required>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom4" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom4" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 </tbody>
@@ -248,37 +182,39 @@
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Nôn/buồn nôn <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom5" value="true" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;" required>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom5" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom5" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 12px;">Tiêu chảy <span class="red">(*)</span></td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom6" value="true" style="width: 20px; height: 20px;" required>
+                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;" required>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom6" value="false" style="width: 20px; height: 20px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 12px;">Xuất huyết ngoài da <span class="red">(*)</span></td>
-                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom7" value="true" style="width: 20px; height: 20px;" required>
-                    </td>
-                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom7" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom6" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #ddd; padding: 12px;">Nổi ban ngoài da <span class="red">(*)</span></td>
-                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom8" value="true" style="width: 20px; height: 20px;" required>
+                    <td style="border: 1px solid #ddd; padding: 12px;">Xuất huyết ngoài da <span class="red">(*)</span>
                     </td>
                     <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                        <input type="radio" name="symptom8" value="false" style="width: 20px; height: 20px;">
+                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;" required>
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        <input type="radio" name="symptom7" style="width: 20px; height: 20px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">Nổi ban ngoài da <span class="red">(*)</span>
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;" required>
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        <input type="radio" name="symptom8" style="width: 20px; height: 20px;">
                     </td>
                 </tr>
                 </tbody>
@@ -300,25 +236,25 @@
             <tr>
                 <td style="border: 1px solid #ddd; padding: 12px;">
                     Đến trang trại chăn nuôi / chợ buôn bán động vật sống / tiếp xúc động vật
-                     <span class="red">(*)</span>
+                    <span class="red">(*)</span>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history1" value="true" style="width: 20px; height: 20px;" required>
+                    <input type="radio" name="history1" style="width: 20px; height: 20px;" required>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history1" value="false" style="width: 20px; height: 20px;">
+                    <input type="radio" name="history1" style="width: 20px; height: 20px;">
                 </td>
             </tr>
             <tr>
                 <td style="border: 1px solid #ddd; padding: 12px;">
                     Tiếp xúc gần (<2m) với người mắc bệnh viên được hô hấp do nCoV
-                     <span class="red">(*)</span>
+                    <span class="red">(*)</span>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history2" value="true" style="width: 20px; height: 20px;" required>
+                    <input type="radio" name="history2" style="width: 20px; height: 20px;" required>
                 </td>
                 <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                    <input type="radio" name="history2" value="false" style="width: 20px; height: 20px;">
+                    <input type="radio" name="history2" style="width: 20px; height: 20px;">
                 </td>
             </tr>
             </tbody>

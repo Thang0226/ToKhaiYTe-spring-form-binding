@@ -1,5 +1,6 @@
 package com.config;
 
+import com.model.ToKhaiYTe;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -56,5 +57,9 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 	}
 
 	// DI
+	@Bean
+	public ToKhaiYTe form() {
+		return new ToKhaiYTe();
+	}
 
 }

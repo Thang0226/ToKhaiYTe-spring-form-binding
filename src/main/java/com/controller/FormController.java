@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/form")
@@ -18,7 +19,7 @@ public class FormController {
 	private IFormService formService;
 
 	@GetMapping("/create")
-	public String showForm(Model model) {
+	public String showCreateForm(Model model) {
 		model.addAttribute("years", formService.getYears());
 		model.addAttribute("months", formService.getMonths());
 		model.addAttribute("dates", formService.getDates());
@@ -28,16 +29,21 @@ public class FormController {
 		model.addAttribute("cities", formService.getCities());
 		model.addAttribute("towns", formService.getTowns());
 		model.addAttribute("streets", formService.getStreets());
-		ToKhaiYTe Form = new ToKhaiYTe();
-		model.addAttribute("form", Form);
+		ToKhaiYTe newForm = new ToKhaiYTe();
+		model.addAttribute("form", newForm);
 		return "create";
 	}
 
 	@PostMapping("/save")
-	public String saveForm(@ModelAttribute("form") ToKhaiYTe Form, Model model) {
-		formService.setForm(Form);
-		model.addAttribute("message", "KHAI BÁO THÀNH CÔNG");
-		return "index";
+	public String saveForm(@ModelAttribute("form") ToKhaiYTe form, RedirectAttributes redirectAttributes) {
+		formService.setForm(form);
+		redirectAttributes.addFlashAttribute("message", "KHAI BÁO THÀNH CÔNG");
+		return "redirect:/form/show";
 	}
 
+	@GetMapping("/show")
+	public String showForm(Model model) {
+		model.addAttribute("form", formService.getForm());
+		return "show";
+	}
 }

@@ -1,10 +1,14 @@
 package com.service;
 
 import com.model.ToKhaiYTe;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FormService implements IFormService {
+
+	@Autowired
+	private ToKhaiYTe form;
 
 	private int[] years = intList(1924, 2025);
 	private String[] sexes = {"Nam", "Nữ", "Khác"};
@@ -18,12 +22,43 @@ public class FormService implements IFormService {
 
 	@Override
 	public ToKhaiYTe getForm() {
-		return null;
+		return form;
 	}
 
 	@Override
-	public void setForm(ToKhaiYTe form) {
+	public void setForm(ToKhaiYTe inputForm) {
+		form.setName(inputForm.getName());
+		form.setBirthYear(inputForm.getBirthYear());
+		form.setSex(inputForm.getSex());
+		form.setCccd(inputForm.getCccd());
+		form.setNationality(inputForm.getNationality());
+		form.setTransport(inputForm.getTransport());
+		form.setTransportId(inputForm.getTransportId());
+		form.setChairNumber(inputForm.getChairNumber());
+		form.setStartDate(inputForm.getStartDate());
+		form.setEndDate(inputForm.getEndDate());
+		form.setStartMonth(inputForm.getStartMonth());
+		form.setEndMonth(inputForm.getEndMonth());
+		form.setStartYear(inputForm.getStartYear());
+		form.setEndYear(inputForm.getEndYear());
+		form.setVisitedPlaces(inputForm.getVisitedPlaces());
+		form.setCity(inputForm.getCity());
+		form.setTown(inputForm.getTown());
+		form.setStreet(inputForm.getStreet());
+		form.setAddress(inputForm.getAddress());
+		form.setPhone(inputForm.getPhone());
+		form.setEmail(inputForm.getEmail());
 
+		form.setSymptom1(inputForm.isSymptom1());
+		form.setSymptom2(inputForm.isSymptom2());
+		form.setSymptom3(inputForm.isSymptom3());
+		form.setSymptom4(inputForm.isSymptom4());
+		form.setSymptom5(inputForm.isSymptom5());
+		form.setSymptom6(inputForm.isSymptom6());
+		form.setSymptom7(inputForm.isSymptom7());
+		form.setSymptom8(inputForm.isSymptom8());
+		form.setHistory1(inputForm.isHistory1());
+		form.setHistory2(inputForm.isHistory2());
 	}
 
 	@Override
